@@ -1,0 +1,38 @@
+# EazyShop Products
+openapi: 3.1.0
+info: # EazyShop Products Info
+  title: EazyShop Products APIs Definition
+  summary: EazyShop Products APIs
+  description: |
+    Using this OpenAPI specification, any consumer can 
+    understand the APIs that are exposed by EazyShop
+  termsOfService: https://eazyshop.com/terms/
+  contact: # Contact EazyShop Products Support Team
+    name: EazyShop API Support
+    url: https://www.eazyshop.com/support
+    email: support@eazyshop.com
+  license: # EazyShop License info
+    name: EazyShop License
+    url: https://www.eazyshop.com/licenses/LICENSE-2.0.html
+  version: 0.0.1 # EazyShop Product Version
+servers: # List of servers where the APIs are hosted
+  - url: https://development.eazyshop-server.com/v1
+    description: Development server
+  - url: https://staging.eazyshop-server.com/v1
+    description: Staging server
+  - url: https://api.eazyshop-server.com/v1
+    description: Production server
+  - url: https://{username}.server.com:{port}/{version}
+    variables:
+      username:
+        default: demo
+        description: |
+          This value is assigned by the service provider.
+      port:
+        enum:
+          - "8443"
+          - "443"
+        default: "8443"
+      version:
+        default: v1
+paths: {}
