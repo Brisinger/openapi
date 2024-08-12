@@ -1,0 +1,93 @@
+# EazyShop Products
+openapi: 3.1.0
+info: # EazyShop Products Info
+  title: EazyShop Products APIs Definition
+  summary: EazyShop Products APIs
+  description: |
+    Using this OpenAPI specification, any consumer can 
+    understand the APIs that are exposed by EazyShop
+  termsOfService: https://eazyshop.com/terms/
+  contact: # Contact EazyShop Products Support Team
+    name: EazyShop API Support
+    url: https://www.eazyshop.com/support
+    email: support@eazyshop.com
+  license: # EazyShop License info
+    name: EazyShop License
+    url: https://www.eazyshop.com/licenses/LICENSE-2.0.html
+  version: 0.0.1 # EazyShop Product Version
+servers: # List of servers where the APIs are hosted
+  - url: https://development.eazyshop-server.com/v1
+    description: Development server
+  - url: https://staging.eazyshop-server.com/v1
+    description: Staging server
+  - url: https://api.eazyshop-server.com/v1
+    description: Production server
+  - url: https://{username}.server.com:{port}/{version}
+    variables:
+      username:
+        default: demo
+        description: |
+          This value is assigned by the service provider.
+      port:
+        enum:
+          - "8443"
+          - "443"
+        default: "8443"
+      version:
+        default: v1
+paths:
+  /categories: # Categories API endpoint
+    get:
+      summary: List all categories
+      description: |
+        Returns the list of categories supported by EazyShop
+      parameters:
+        - name: categoryId
+          in: query
+          schema:
+            type: integer
+            minimum: 100
+            maximum: 1000
+          example: 101
+      responses:
+        "200":
+          description: |
+            A list of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    categoryId:
+                      type: integer
+                    name:
+                      type: string
+  /categories/{categoryId}: # Category details API endpoint
+    get:
+      summary: Return category details
+      description: |
+        Returns the category details supported by EazyShop
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          schema:
+            type: integer
+            minimum: 100
+            maximum: 1000
+          example: 102
+      responses:
+        "200":
+          description: |
+            Return category details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categoryId:
+                    type: integer
+                  name:
+                    type: string
